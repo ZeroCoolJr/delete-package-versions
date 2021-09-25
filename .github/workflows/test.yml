@@ -30,6 +30,8 @@ jobs:
       id: dpv
       name: Smoke Test Delete Package Versions Action
       with:
-        package-name: 'com.github.actions.test-package'
-        num-old-versions-to-delete: 0
+        owner: 'zerocooljr'
+        repo: 'DirtBag.ViewModels'
+        package-name: 'DirtBag.ViewModels'
+        num-old-versions-to-delete: 1
     - run: echo "packageVersionIdsLength -> ${{steps.dpv.outputs.packageVersionIdsLength}}"
