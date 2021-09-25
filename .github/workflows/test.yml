@@ -27,7 +27,9 @@ jobs:
     - uses: actions/checkout@v2
       name: Checkout Delete Package Versions Repo
     - uses: ./
+      id: dpv
       name: Smoke Test Delete Package Versions Action
       with:
         package-name: 'com.github.actions.test-package'
         num-old-versions-to-delete: 0
+    - run: echo "packageVersionIdsLength -> ${{steps.dpv.outputs.packageVersionIdsLength}}"
