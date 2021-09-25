@@ -9,7 +9,7 @@ export function getVersionIds(input: Input): Observable<string[]> {
     'packageVersionIdsLength',
     input.packageVersionIds.length.toString()
   )
-  
+
   if (input.packageVersionIds.length > 0) {
     return of(input.packageVersionIds)
   }
