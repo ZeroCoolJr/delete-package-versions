@@ -4,24 +4,25 @@ import {deletePackageVersions, getOldestVersions} from './version'
 import {concatMap, map} from 'rxjs/operators'
 
 export function getVersionIds(input: Input): Observable<string[]> {
-  if (input.packageVersionIds.length > 0) {
-    return of(input.packageVersionIds)
-  }
+  return throwError('getVersionIds')
 
-  if (input.hasOldestVersionQueryInfo()) {
-    return throwError('getVersionIds')
-    // return getOldestVersions(
-    //   input.owner,
-    //   input.repo,
-    //   input.packageName,
-    //   input.numOldVersionsToDelete,
-    //   input.token
-    // ).pipe(map(versionInfo => versionInfo.map(info => info.id)))
-  }
+//   if (input.packageVersionIds.length > 0) {
+//     return of(input.packageVersionIds)
+//   }
 
-  return throwError(
-    "Could not get packageVersionIds. Explicitly specify using the 'package-version-ids' input or provide the 'package-name' and 'num-old-versions-to-delete' inputs to dynamically retrieve oldest versions"
-  )
+//   if (input.hasOldestVersionQueryInfo()) {
+//     // return getOldestVersions(
+//     //   input.owner,
+//     //   input.repo,
+//     //   input.packageName,
+//     //   input.numOldVersionsToDelete,
+//     //   input.token
+//     // ).pipe(map(versionInfo => versionInfo.map(info => info.id)))
+//   }
+
+//   return throwError(
+//     "Could not get packageVersionIds. Explicitly specify using the 'package-version-ids' input or provide the 'package-name' and 'num-old-versions-to-delete' inputs to dynamically retrieve oldest versions"
+//   )
 }
 
 export function deleteVersions(input: Input): Observable<boolean> {
