@@ -38,12 +38,37 @@ export function getMockedOldestQueryResponse(
   }
 }
 
-export function mockOldestQueryResponse(
-  numVersions: number
-) {
-  const response = new Promise((resolve) => {
+export function mockOldestQueryResponse(numVersions: number) {
+  const response = new Promise(resolve => {
     resolve(getMockedOldestQueryResponse(numVersions))
   }) as Promise<GraphQlQueryResponseData>
-  jest.spyOn(Graphql, 'graphql').mockImplementation(
-    (token: string, query: string, parameters: RequestParameters) => response)
+  jest
+    .spyOn(Graphql, 'graphql')
+    .mockImplementation(
+      (token: string, query: string, parameters: RequestParameters) => response
+    )
+}
+
+export function getMockedEmptyQueryResponse(): GetVersionsQueryResponse {
+  return {
+    repository: {
+      packages: {
+        edges: []
+      }
+    }
+  }
+}
+
+export function mockEmptyQueryResponse(): void {
+  const response = new Promise(resolve => {
+    resolve(getMockedEmptyQueryResponse())
+  }) as Promise<GraphQlQueryResponseData>
+
+  jest
+    .spyOn(Graphql, 'graphql')
+    .mockImplementation(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/promise-function-async
+      (token: string, query: string, parameters: RequestParameters) => response
+    )
 }

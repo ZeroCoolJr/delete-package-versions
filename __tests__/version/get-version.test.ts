@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import {mockOldestQueryResponse} from './graphql.mock'
+import {mockEmptyQueryResponse, mockOldestQueryResponse} from './graphql.mock'
 import {
   getOldestVersions as _getOldestVersions,
   VersionInfo
@@ -35,6 +35,16 @@ describe('get versions tests -- mock graphql', () => {
 
     getOldestVersions({numVersions}).subscribe(versions => {
       expect(versions.length).toBe(numVersions)
+      done()
+    })
+  })
+})
+
+describe('get versions tests -- mock graphql - empty nodes', () => {
+  it('getOldestVersions -- success', done => {
+    mockEmptyQueryResponse()
+    getOldestVersions().subscribe(versions => {
+      expect(versions.length).toBe(0)
       done()
     })
   })

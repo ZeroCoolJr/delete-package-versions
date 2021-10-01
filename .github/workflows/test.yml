@@ -21,6 +21,7 @@ jobs:
       name: Check Format, Lint, Run Unit Tests, Build and Package
 
   smoke-test: # make sure the action works on a clean machine without building
+    needs: package
     name: Smoke Test
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +35,4 @@ jobs:
         repo: 'DirtBag.ViewModels'
         package-name: 'DirtBag.ViewModels'
         num-old-versions-to-delete: 1
-        token: ${{secrets.PAT}}
+        token: ${{github.token}}
