@@ -31,8 +31,7 @@ jobs:
       name: Smoke Test Delete Package Versions Action
       with:
         owner: 'zerocooljr'
-        repo: 'packages'
-        package-name: 'DirtBag.ViewModels'
+        repo: 'DirtBag.ViewModels'
         num-old-versions-to-delete: 1
         token: ${{secrets.PAT}}
     - run: echo "packageVersionIdsLength -> ${{steps.dpv.outputs.packageVersionIdsLength}}"
