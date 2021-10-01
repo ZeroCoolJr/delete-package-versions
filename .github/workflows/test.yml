@@ -35,4 +35,4 @@ jobs:
         repo: 'DirtBag.ViewModels'
         package-name: 'DirtBag.ViewModels'
         num-old-versions-to-delete: 1
-        token: ${{github.token}}
+        token: ${{secrets.PAT}}
