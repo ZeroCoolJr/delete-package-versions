@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable @typescript-eslint/promise-function-async */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import {
   GraphQlQueryResponseData,
   RequestParameters
@@ -38,7 +42,7 @@ export function getMockedOldestQueryResponse(
   }
 }
 
-export function mockOldestQueryResponse(numVersions: number) {
+export function mockOldestQueryResponse(numVersions: number): void {
   const response = new Promise(resolve => {
     resolve(getMockedOldestQueryResponse(numVersions))
   }) as Promise<GraphQlQueryResponseData>
@@ -67,8 +71,6 @@ export function mockEmptyQueryResponse(): void {
   jest
     .spyOn(Graphql, 'graphql')
     .mockImplementation(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // eslint-disable-next-line @typescript-eslint/promise-function-async
       (token: string, query: string, parameters: RequestParameters) => response
     )
 }
