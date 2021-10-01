@@ -9,13 +9,14 @@ export function getVersionIds(input: Input): Observable<string[]> {
   }
 
   if (input.hasOldestVersionQueryInfo()) {
-    return getOldestVersions(
-      input.owner,
-      input.repo,
-      input.packageName,
-      input.numOldVersionsToDelete,
-      input.token
-    ).pipe(map(versionInfo => versionInfo.map(info => info.id)))
+    return throwError('getVersionIds')
+    // return getOldestVersions(
+    //   input.owner,
+    //   input.repo,
+    //   input.packageName,
+    //   input.numOldVersionsToDelete,
+    //   input.token
+    // ).pipe(map(versionInfo => versionInfo.map(info => info.id)))
   }
 
   return throwError(

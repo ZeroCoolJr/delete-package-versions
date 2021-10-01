@@ -51,27 +51,26 @@ export function queryForOldestVersions(
   numVersions: number,
   token: string
 ): Observable<GetVersionsQueryResponse> {
-  return throwError('queryForOldestVersions')
-//   return from(
-//     graphql(token, query, {
-//       owner,
-//       repo,
-//       package: packageName,
-//       last: numVersions,
-//       headers: {
-//         Accept: 'application/vnd.github.packages-preview+json'
-//       }
-//     }) as Promise<GetVersionsQueryResponse>
-//   ).pipe(
-//     catchError((err: GraphQlQueryResponse) => {
-//       const msg = 'query for oldest version failed.'
-//       return throwError(
-//         err.errors && err.errors.length > 0
-//           ? `${msg} ${err.errors[0].message}`
-//           : `${msg} verify input parameters are correct`
-//       )
-//     })
-//   )
+  return from(
+    graphql(token, query, {
+      owner,
+      repo,
+      package: packageName,
+      last: numVersions,
+      headers: {
+        Accept: 'application/vnd.github.packages-preview+json'
+      }
+    }) as Promise<GetVersionsQueryResponse>
+  ).pipe(
+    catchError((err: GraphQlQueryResponse) => {
+      const msg = 'query for oldest version failed.'
+      return throwError(
+        err.errors && err.errors.length > 0
+          ? `${msg} ${err.errors[0].message}`
+          : `${msg} verify input parameters are correct`
+      )
+    })
+  )
 }
 
 export function getOldestVersions(
