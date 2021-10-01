@@ -19,13 +19,14 @@ function getActionInput(): Input {
 }
 
 function run(): Observable<boolean> {
-  try {
-    return deleteVersions(getActionInput()).pipe(
-      catchError(err => throwError(err))
-    )
-  } catch (error) {
-    return throwError(error.message)
-  }
+  return throwError('run()')
+//   try {
+//     return deleteVersions(getActionInput()).pipe(
+//       catchError(err => throwError(err))
+//     )
+//   } catch (error) {
+//     return throwError(error.message)
+//   }
 }
 
 run().subscribe({
