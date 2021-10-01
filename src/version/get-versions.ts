@@ -89,8 +89,11 @@ export function getOldestVersions(
   ).pipe(
     map(result => {
       console.log(result)
-      console.log(result.repository.packages.edges.length)
-      if (result.repository.packages.edges.length < 1) {
+      //console.log(result.repository.packages.edges.length)
+      if (
+        result.repository.packages == null ||
+        result.repository.packages.edges.length < 1
+      ) {
         // throwError(
         //   `package: ${packageName} not found for owner: ${owner} in repo: ${repo}`
         // )
