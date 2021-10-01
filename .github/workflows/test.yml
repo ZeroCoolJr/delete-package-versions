@@ -9,8 +9,19 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
 
-  package: # make sure build/ci work properly
-    name: Package
+  # package: # make sure build/ci work properly
+  #   name: Package
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     name: Checkout Delete Package Versions Repo
+  #   - run: npm install
+  #     name: NPM Install
+  #   - run: npm run pack
+  #     name: Check Format, Lint, Run Unit Tests, Build and Package
+
+  smoke-test: # make sure the action works on a clean machine without building
+    name: Smoke Test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -19,20 +30,12 @@ jobs:
       name: NPM Install
     - run: npm run pack
       name: Check Format, Lint, Run Unit Tests, Build and Package
-
-  smoke-test: # make sure the action works on a clean machine without building
-    needs: package
-    name: Smoke Test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      name: Checkout Delete Package Versions Repo
     - uses: ./
       id: dpv
       name: Smoke Test Delete Package Versions Action
       with:
         owner: 'zerocooljr'
-        repo: 'DirtBag.ViewModels'
-        package-name: 'DirtBag.ViewModels'
+        repo: 'DirtBag.Data'
+        package-name: 'DirtBag.Data'
         num-old-versions-to-delete: 1
         token: ${{secrets.PAT}}
