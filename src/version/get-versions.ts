@@ -91,7 +91,8 @@ export function getOldestVersions(
       console.log(result)
       //console.log(result.repository.packages.edges.length)
       if (
-        result.repository.packages == null ||
+        result.repository === null ||
+        result.repository.packages === null ||
         result.repository.packages.edges.length < 1
       ) {
         // throwError(
