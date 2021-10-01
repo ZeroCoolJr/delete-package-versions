@@ -2,14 +2,8 @@ import {Input} from './input'
 import {Observable, of, throwError} from 'rxjs'
 import {deletePackageVersions, getOldestVersions} from './version'
 import {concatMap, map} from 'rxjs/operators'
-import {setOutput} from '@actions/core'
 
 export function getVersionIds(input: Input): Observable<string[]> {
-  setOutput(
-    'packageVersionIdsLength',
-    input.packageVersionIds.length.toString()
-  )
-
   if (input.packageVersionIds.length > 0) {
     return of(input.packageVersionIds)
   }

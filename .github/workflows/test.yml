@@ -32,6 +32,7 @@ jobs:
       with:
         owner: 'zerocooljr'
         repo: 'DirtBag.ViewModels'
+        package-name: 'DirtBag.ViewModels'
         num-old-versions-to-delete: 1
         token: ${{secrets.PAT}}
     - run: echo "packageVersionIdsLength -> ${{steps.dpv.outputs.packageVersionIdsLength}}"
